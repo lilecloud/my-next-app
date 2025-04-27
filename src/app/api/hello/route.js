@@ -1,4 +1,4 @@
-// import { getRequestContext } from '@cloudflare/next-on-pages'
+import { getRequestContext } from '@cloudflare/next-on-pages'
 
 export const runtime = 'edge'
 
@@ -31,10 +31,11 @@ export async function POST() {
   // )
   //
   // KV Example:
-  // const myKv = getRequestContext().env.MY_KV_NAMESPACE
-  // await myKv.put('suffix', ' from a KV store!')
-  // const suffix = await myKv.get('suffix')
-  // return new Response(responseText + suffix)
-
-  return new Response(responseText)
+  const myKv = getRequestContext().env.KV
+  await myKv.put('suffix', ' from a KV store!')
+  const suffix = await myKv.get('suffix')
+  console.log(" put success")
+  return new Response(JSON.stringify({ suffix }), {
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
