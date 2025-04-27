@@ -3,15 +3,15 @@
 	"version": "0.1.0",
 	"private": true,
 	"engines": {
-		"node": "^18.18.0 || ^19.8.0 || >= 20.0.0"
+		"node": "20.x"
 	},
 	"scripts": {
-		"dev": "next dev --turbopack",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
 		"pages:build": "npx @cloudflare/next-on-pages",
-		"preview": "npm run pages:build && wrangler pages dev",
+		"preview": "npm run pages:build && wrangler pages dev .vercel/output/static --kv=MY_KV",
 		"deploy": "npm run pages:build && wrangler pages deploy"
 	},
 	"dependencies": {
