@@ -31,7 +31,7 @@ export async function POST() {
   // )
   //
   // KV Example:
-  const myKv = getRequestContext().env.KV
+  const myKv = getRequestContext().env.MY_KV
   await myKv.put('suffix', ' from a KV store!')
   const suffix = await myKv.get('suffix')
   console.log(" put success")
